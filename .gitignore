@@ -1,0 +1,4 @@
+# ignore js transpiles
+*.js
+node_modules
+**/node_modules/*.js

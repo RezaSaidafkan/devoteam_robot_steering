@@ -87,5 +87,45 @@ describe("index", () => {
             expect(() => run(roomLength, roomHeight, initLong, initLat, initOri, commands)).toThrowError()
             }
         )
+        it('start from lower left corner and reach the upper right corner', () => {
+            // Arrange
+            const roomLength = 5
+            const roomHeight = 5
+            const initLong = 0
+            const initLat = 0
+            const initOri = "UP"
+
+            const commands = "FRFLFRFLFRFLFRFL"
+
+            // Act & Assert
+            const result = run(roomLength, roomHeight, initLong, initLat, initOri, commands)
+            expect(result).toMatchObject(
+                {
+                    longitude: 4,
+                    latitude: 4,
+                    orientation: Orientation.UP
+                })
+            }
+        )
+        it('start from top right corner and reach the lower left corner', () => {
+            // Arrange
+            const roomLength = 5
+            const roomHeight = 5
+            const initLong = 4
+            const initLat = 4
+            const initOri = "DOWN"
+
+            const commands = "FRFLFRFLFRFLFRFL"
+
+            // Act & Assert
+            const result = run(roomLength, roomHeight, initLong, initLat, initOri, commands)
+            expect(result).toMatchObject(
+                {
+                    longitude: 0,
+                    latitude: 0,
+                    orientation: Orientation.DOWN
+                })
+            }
+        )
     })
 })

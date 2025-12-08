@@ -17,15 +17,6 @@ function initalizeEnvironment(room_length: number, room_height: number, init_lon
     return new RobotDynamic(initState, room)
 }
 
-function initializeCommands(commands: string): Array<Command> {
-    const convertedCommands = []
-
-    for (let i = 0; i < commands.length; i++) {
-        convertedCommands.push(commands.charAt(i) as Command)
-    }
-    return convertedCommands
-}
-
 
 function *steer(robot: RobotDynamic, commands: Array<Command>): Generator<undefined, State, undefined> {
     for (const command of commands) {
@@ -45,16 +36,34 @@ function *steer(robot: RobotDynamic, commands: Array<Command>): Generator<undefi
     return robot.getState()
 }
 
+type Keys = keyof typeof Command
+
+function isCommand(commands: Array<string>): commands is Array<Keys> {
+    return commands.filter(current => Object.values(Command).includes(current)).length === commands.length
+}
+
+function isOrientation(orientation: string): orientation is Orientation {
+    return Object.values(Orientation).includes(orientation as Orientation)
+}
+
+
 
 export function run(room_length: number, room_height: number, init_long: number, init_lat: number, init_orientation: string, inputCommands: string): State {
-    const robotDynamic = initalizeEnvironment(room_length, room_height, init_long, init_lat, init_orientation as Orientation);
-    const commands = initializeCommands(inputCommands);
+    
+    let commandsArray = inputCommands.split("")
+    if (isCommand(commandsArray) && isOrientation(init_orientation)) {
+        const robotDynamic = initalizeEnvironment(room_length, room_height, init_long, init_lat, Orientation[init_orientation as keyof typeof Orientation]);
 
-    let iterator = steer(robotDynamic, commands)
-    let result = iterator.next()
-
-    while (!result.done) {
-        result = iterator.next()
+        let commands = commandsArray as Array<Keys>
+        let iterator = steer(robotDynamic, commands.map(current => Command[current]))
+        let result = iterator.next()
+    
+        while (!result.done) {
+            result = iterator.next()
+        }
+        return result.value
     }
-    return result.value
+    else {
+        throw TypeError
+    }
 }

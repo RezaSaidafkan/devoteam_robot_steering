@@ -15,10 +15,10 @@ interface Room {
 
 
 enum Orientation {
-    UP = "up",
-    DOWN = "down",
-    LEFT = "left",
-    RIGHT = "right"
+    UP = "UP",
+    DOWN = "DOWN",
+    LEFT = "LEFT",
+    RIGHT = "RIGHT"
 
 }
 
@@ -30,6 +30,12 @@ interface State {
 
 
 enum Command{
+    L,
+    R,
+    F
+}
+
+enum Command2{
     L = "L",
     R = "R",
     F = "F"

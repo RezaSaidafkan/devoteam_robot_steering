@@ -1,15 +1,46 @@
 import {describe, it, expect} from 'vitest';
 import { run } from './index.ts';
+import { Orientation, Command } from './models.js';
 
 describe("index", () => {
     describe('run', () => {
+        it('should block passing non declared arguements orientations', () => {
+            // Arrange
+            const roomLength = 5
+            const roomHeight = 5
+            const initLong = 0
+            const initLat = 0
+            const initOri = "U" // some undeclared orientation
+            const commands = "F"
+
+            // Act & Assert
+            // run(roomLength, roomHeight, initLong, initLat, initOri, commands)
+            expect(() => run(roomLength, roomHeight, initLong, initLat, initOri, commands)).toThrowError()
+
+        })
+
+        it('should block passing non declared "commands"', () => {
+            // Arrange
+            const roomLength = 5
+            const roomHeight = 5
+            const initLong = 0
+            const initLat = 0
+            const initOri = "UP"
+            const commands = "Forward" // some undeclared command
+
+            // Act & Assert
+            //run(roomLength, roomHeight, initLong, initLat, initOri, commands)
+            expect(() => run(roomLength, roomHeight, initLong, initLat, initOri, commands)).toThrowError()
+
+        })
+
         it('start from lower left corner and take a few steps', () => {
             // Arrange
             const roomLength = 5
             const roomHeight = 5
             const initLong = 0
             const initLat = 0
-            const initOri = "up"
+            const initOri = "UP"
 
             const commands = "FRF"
 
@@ -19,7 +50,7 @@ describe("index", () => {
                 {
                     longitude: 1,
                     latitude: 1,
-                    orientation: 'right'
+                    orientation: Orientation.RIGHT
                 })
             }
         )
@@ -29,7 +60,7 @@ describe("index", () => {
             const roomHeight = 5
             const initLong = 0
             const initLat = 0
-            const initOri = "up"
+            const initOri = "UP"
 
             const commands = "FFFF"
 
@@ -39,7 +70,7 @@ describe("index", () => {
                 {
                     longitude: 0,
                     latitude: 4,
-                    orientation: 'up'
+                    orientation: Orientation.UP
                 })
             }
         )
@@ -49,7 +80,7 @@ describe("index", () => {
             const roomHeight = 5
             const initLong = 0
             const initLat = 0
-            const initOri = "up"
+            const initOri = "UP"
 
             const commands = "FFFFF"
             // Act & Assert

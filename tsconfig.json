@@ -3,11 +3,19 @@
         "target": "esnext",
         "module": "nodenext",
         "moduleResolution": "nodenext",
-        "outDir": "./dist",
+        "outDir": "./src",
         "rootDir": "./src",
         "strict": true,
         "esModuleInterop": true,
         "skipLibCheck": true,
         "forceConsistentCasingInFileNames": true
-    }
+    },
+    "include": [
+    "src/**/*" // Only include files in the src directory
+    ],
+    "exclude": [
+        "**/*.spec.ts",
+        "**/*.test.ts",
+        "node_modules"
+    ]
 }

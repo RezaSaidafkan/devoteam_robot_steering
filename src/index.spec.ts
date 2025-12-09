@@ -1,5 +1,5 @@
 import {describe, it, expect} from 'vitest';
-import { run } from './index.ts';
+import { run } from './index.js';
 import { Orientation, Command } from './models.js';
 
 describe("index", () => {

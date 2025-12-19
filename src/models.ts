@@ -8,7 +8,7 @@ class LimitExceededError extends Error {
     }
 }
 
-interface Room {
+export interface Room {
     length: number,
     height: number
     }
@@ -22,7 +22,7 @@ enum Orientation {
 
 }
 
-interface State {
+export interface State {
     longitude: number
     latitude: number
     orientation: Orientation
@@ -30,9 +30,9 @@ interface State {
 
 
 enum Command{
-    L,
-    R,
-    F
+    L = "L",
+    R = "R",
+    F = "F"
 }
 
 enum Command2{
@@ -42,4 +42,4 @@ enum Command2{
 }
 
 
-export {Room, State, Orientation, Command, LimitExceededError}
+export {Orientation, Command, LimitExceededError}

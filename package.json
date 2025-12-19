@@ -5,7 +5,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "vitest run ."
+    "test": "vitest run .",
+    "run": "node dist/index.js",
+    "cli": "node dist/cli.js"
   },
   "keywords": [],
   "author": "",
@@ -13,12 +15,12 @@
   "packageManager": "pnpm@10.18.1",
   "dependencies": {
     "ts-node": "^10.9.2",
-    "tsc": "^2.0.4",
     "typescript": "^5.9.3",
     "vite-tsconfig-paths": "^5.1.4",
-    "vitest": "^4.0.10"
+    "vitest": "^4.0.16"
   },
   "devDependencies": {
-    "@types/node": "^24.10.2"
+    "@types/node": "^24.10.4",
+    "tsc": "^2.0.4"
   }
 }

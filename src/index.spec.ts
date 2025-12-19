@@ -4,35 +4,6 @@ import { Orientation, Command } from './models.js';
 
 describe("index", () => {
     describe('run', () => {
-        it('should block passing non declared arguements orientations', () => {
-            // Arrange
-            const roomLength = 5
-            const roomHeight = 5
-            const initLong = 0
-            const initLat = 0
-            const initOri = "U" // some undeclared orientation
-            const commands = "F"
-
-            // Act & Assert
-            // run(roomLength, roomHeight, initLong, initLat, initOri, commands)
-            expect(() => run(roomLength, roomHeight, initLong, initLat, initOri, commands)).toThrowError()
-
-        })
-
-        it('should block passing non declared "commands"', () => {
-            // Arrange
-            const roomLength = 5
-            const roomHeight = 5
-            const initLong = 0
-            const initLat = 0
-            const initOri = "UP"
-            const commands = "Forward" // some undeclared command
-
-            // Act & Assert
-            //run(roomLength, roomHeight, initLong, initLat, initOri, commands)
-            expect(() => run(roomLength, roomHeight, initLong, initLat, initOri, commands)).toThrowError()
-
-        })
 
         it('start from lower left corner and take a few steps', () => {
             // Arrange
@@ -40,9 +11,9 @@ describe("index", () => {
             const roomHeight = 5
             const initLong = 0
             const initLat = 0
-            const initOri = "UP"
+            const initOri = Orientation.UP
 
-            const commands = "FRF"
+            const commands = [Command.F, Command.R, Command.F]
 
             // Act & Assert
             const result = run(roomLength, roomHeight, initLong, initLat, initOri, commands)
@@ -60,9 +31,9 @@ describe("index", () => {
             const roomHeight = 5
             const initLong = 0
             const initLat = 0
-            const initOri = "UP"
+            const initOri = Orientation.UP
 
-            const commands = "FFFF"
+            const commands = [Command.F, Command.F, Command.F, Command.F]
 
             // Act & Assert
             const result = run(roomLength, roomHeight, initLong, initLat, initOri, commands)
@@ -80,9 +51,9 @@ describe("index", () => {
             const roomHeight = 5
             const initLong = 0
             const initLat = 0
-            const initOri = "UP"
+            const initOri = Orientation.UP
 
-            const commands = "FFFFF"
+            const commands = [Command.F, Command.F, Command.F, Command.F, Command.F]
             // Act & Assert
             expect(() => run(roomLength, roomHeight, initLong, initLat, initOri, commands)).toThrowError()
             }
@@ -93,9 +64,9 @@ describe("index", () => {
             const roomHeight = 5
             const initLong = 0
             const initLat = 0
-            const initOri = "UP"
+            const initOri = Orientation.UP
 
-            const commands = "FRFLFRFLFRFLFRFL"
+            const commands = [Command.F, Command.R, Command.F, Command.L, Command.F, Command.R, Command.F, Command.L, Command.F, Command.R, Command.F, Command.L, Command.F, Command.R, Command.F, Command.L]
 
             // Act & Assert
             const result = run(roomLength, roomHeight, initLong, initLat, initOri, commands)
@@ -113,9 +84,9 @@ describe("index", () => {
             const roomHeight = 5
             const initLong = 4
             const initLat = 4
-            const initOri = "DOWN"
+            const initOri = Orientation.DOWN
 
-            const commands = "FRFLFRFLFRFLFRFL"
+            const commands = [Command.F, Command.R, Command.F, Command.L, Command.F, Command.R, Command.F, Command.L, Command.F, Command.R, Command.F, Command.L, Command.F, Command.R, Command.F, Command.L]
 
             // Act & Assert
             const result = run(roomLength, roomHeight, initLong, initLat, initOri, commands)

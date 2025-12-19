@@ -1,37 +1,67 @@
-# Problem Statement
-Task: Robot programming
-Your task is to program the controller to a robot. It’s a simple robot that can
-walk around in a room where the floor is represented as a number of fields in a
-wire mesh. Input is first two numbers, which tells the robot how big the room is:
-5 7
-Which means that the room is 5 fields wide and is 7 fields deep.
-The size of the room follows two digits and one letter indicating the starting
-position of the robot and its orientation in space. For example:
-1
-3 3 N
-Which means that the robot is in field (3, 3) and faces north. Subsequently, the
-robot receives a number of navigation commands in the form of characters. The
-following commands shall be implemented:
-• L Turn left
-• R Turn right
-• F Walk forward
-Example:
-LFFRFRFRFF
-If the robot walks outside of the room bounds an appropriate the program should
-exit with an error code.
-After the last command is received, the robot must report which field it is in
-and what direction it is facing.
-Example:
+# Robot Programming Challenge
+
+## Problem Statement
+
+Your task is to program the controller for a robot. It’s a simple robot that can walk around in a room where the floor is represented as a grid.
+
+### Type Definitions
+
+The problem domain is defined by the following TypeScript interfaces:
+
+```typescript
+type Orientation = 'N' | 'E' | 'S' | 'W';
+type Command = 'L' | 'R' | 'F';
+
+interface Room {
+  width: number;  // Input line 1, e.g., "5 7"
+  depth: number;
+}
+
+interface RobotState {
+  x: number;      // Input line 2, e.g., "3 3 N"
+  y: number;
+  facing: Orientation;
+}
+```
+
+### Execution Contract
+
+```typescript
+/**
+ * Processes the input commands for the robot.
+ * 
+ * @throws {Error} If the robot walks outside of the room bounds.
+ * @returns {string} The final position formatted as "x y F" (e.g., "1 3 N").
+ */
+function execute(room: Room, start: RobotState, commands: Command[]): string {
+  // Implementation required
+}
+```
+
+### Examples
+
+**Example 1:**
+```text
 5 5
 1 2 N
 RFRFFRFRF
 Report: 1 3 N
+```
+
+**Example 2:**
+```text
 5 5
 0 0 E
 RFLFFLRF
 Report: 3 1 E
+```
 
-# Setup
-We use `pnpm` for package management, `ts-node` for development stage.
+## Setup
 
+We use `pnpm` for package management and `ts-node` for the development stage.
 
+### Installation
+
+```bash
+pnpm install
+```

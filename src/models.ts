@@ -2,7 +2,7 @@
 class LimitExceededError extends Error {
     constructor(message: string) {
         super(message); // Call the constructor of the base class `Error`
-        this.name = "CustomError"; // Set the error name to your custom error class name
+        this.name = "LimitExceededError"; // Set the error name to the custom error class name
         // Set the prototype explicitly to maintain the correct prototype chain
         Object.setPrototypeOf(this, LimitExceededError.prototype);
     }
@@ -34,12 +34,5 @@ enum Command{
     R = "R",
     F = "F"
 }
-
-enum Command2{
-    L = "L",
-    R = "R",
-    F = "F"
-}
-
 
 export {Orientation, Command, LimitExceededError}

@@ -37,7 +37,7 @@ class RobotDynamic {
     // Advance the position 1 step forward
     walkForward(): void {
         if (this.state.orientation == Orientation.UP) {
-            if (this.state.latitude + 1 == this.room.length) {
+            if (this.state.latitude + 1 >= this.room.height) {
                 throw new LimitExceededError("Failed to move 1 step up")
             }
             this.state.latitude += 1
@@ -51,7 +51,7 @@ class RobotDynamic {
             return
         } else
         if (this.state.orientation == Orientation.RIGHT) {
-            if (this.state.longitude +1 == this.room.length) {
+            if (this.state.longitude + 1 >= this.room.length) {
                 throw new LimitExceededError("Failed to move 1 step right")
             }
             this.state.longitude += 1

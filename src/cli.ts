@@ -17,7 +17,7 @@ function isOrientation(orientation: string): orientation is Orientation {
 
 export function parseAndConvert(room: string, positionInput: string, inputCommands: string): typeof InputArgs {
     // parsing room size
-    const [roomHeight, roomLength] = room.split(" ").map(Number);
+    const [roomLength, roomHeight] = room.split(" ").map(Number);
 
     // parsing initial state
     const [initLongString, initLatString, initOrientation] = positionInput.split(" ");

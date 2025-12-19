@@ -58,6 +58,20 @@ describe("index", () => {
             expect(() => run(roomLength, roomHeight, initLong, initLat, initOri, commands)).toThrowError()
             }
         )
+        it('rectangular room vertical bound uses height (not length)', () => {
+            // Arrange
+            const roomLength = 6
+            const roomHeight = 3
+            const initLong = 0
+            const initLat = 0
+            const initOri = Orientation.UP
+
+            const commands = [Command.F, Command.F, Command.F] // 3rd forward should exceed height=3
+
+            // Act & Assert
+            expect(() => run(roomLength, roomHeight, initLong, initLat, initOri, commands)).toThrowError()
+            }
+        )
         it('start from lower left corner and reach the upper right corner', () => {
             // Arrange
             const roomLength = 5
